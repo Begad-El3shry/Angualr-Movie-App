@@ -1,0 +1,19 @@
+<div class="container py-5">
+    <h1 class="text-center">Welcome to Movies Page</h1>
+    <div class="row">
+        <mat-paginator (page)="onPageChange($event)" [length]="allMovies" [pageSize]="pageSize" aria-label="Select Page"
+        ></mat-paginator>
+        <div class="col-lg-3 col-sm-6 my-3" *ngFor="let movie of moviesList">
+            <div class="card ms-2" style="width: 18rem">
+                <a [routerLink]="['/movies',movie.id]">
+                    <img [src]='"https://image.tmdb.org/t/p/w500"+ movie.poster_path' class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">{{movie.original_title}}</h4>
+                    <p class="card-text" *ngIf="movie.isVisible">{{movie.overview}}</p>
+                    <button  type="button" class="btn btn-primary" (click)="toggleDetails(movie.id)">{{movie.isVisible?"hideDetails":"Show Details"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
